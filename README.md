@@ -9,7 +9,14 @@ To implement 4 bit synchronous up counter and validate functionality.
 Quartus prime
 
 **THEORY**
+This Verilog program describes a 4-bit synchronous up-counter.
 
+The counter increases its value by 1 on every positive edge of the clock.
+
+When reset (rst) = 1, the counter output becomes 0 immediately on the next clock edge.
+
+When reset = 0, normal counting continues: 0,1,2,…,15, then it rolls over to 0 again.
+The design uses a non-blocking assignment (<=) for sequential logic.
 **4 bit synchronous UP Counter**
 
 If we enable each J-K flip-flop to toggle based on whether or not all preceding flip-flop outputs (Q) are “high,” we can obtain the same counting sequence as the asynchronous circuit without the ripple effect, since each flip-flop in this circuit will be clocked at exactly the same time:
@@ -27,20 +34,47 @@ The next flip-flop need only “recognize” that the first flip-flop’s Q outp
 However, the remaining flip-flops should be made ready to toggle only when all lower-order output bits are “high,” thus the need for AND gates.
 
 **Procedure**
+Compile the Verilog code in Quartus.
 
-/* write all the steps invloved */
+Open University Program VWF (File → New → University Program Waveform File).
+
+Insert the signals (clk, rst, out[3..0]) into the waveform.
+
+Create a clock for clk (Right-click clk → Insert Clock → 20 ns period).
+
+Set rst = 1 for the first few clock cycles, then change to 0.
+
+Save the VWF and run Simulation (Assignments → Simulation → Run).
+
+Observe the output counting sequence (0000, 0001, 0010, …).
+
 
 **PROGRAM**
+module ex11(out,clk,rst);
+input clk,rst;
+output reg [3:0]out;
+always @ (posedge clk)
+begin
+   if(rst)
+     out<=0;
+   else 
+     out <= out+1;
+end
+endmodule
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. 
 
-Developed by: RegisterNumber:
+Developed by:Samantha Shree S.V 
+RegisterNumber:25017585
 */
 
 **RTL LOGIC UP COUNTER**
+<img width="1920" height="1080" alt="Screenshot (106)" src="https://github.com/user-attachments/assets/d63d9f22-e22e-4b36-8a88-98b7ed77c4b0" />
 
 **TIMING DIAGRAM FOR IP COUNTER**
+<img width="1920" height="1080" alt="Screenshot (107)" src="https://github.com/user-attachments/assets/936cc1a8-a03d-4e0d-b264-4fe212788590" />
 
 **TRUTH TABLE**
+![ex11 truth](https://github.com/user-attachments/assets/49e1a9d0-b3a9-41e9-98e7-2594d61e5276)
 
-**RESULTS**
+**RESULT**
+Thus 4 bit synchronous up counter and validate functionality is executed.
