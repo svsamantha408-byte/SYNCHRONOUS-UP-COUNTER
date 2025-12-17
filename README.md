@@ -34,6 +34,7 @@ The next flip-flop need only “recognize” that the first flip-flop’s Q outp
 However, the remaining flip-flops should be made ready to toggle only when all lower-order output bits are “high,” thus the need for AND gates.
 
 **Procedure**
+```
 Compile the Verilog code in Quartus.
 
 Open University Program VWF (File → New → University Program Waveform File).
@@ -47,9 +48,10 @@ Set rst = 1 for the first few clock cycles, then change to 0.
 Save the VWF and run Simulation (Assignments → Simulation → Run).
 
 Observe the output counting sequence (0000, 0001, 0010, …).
-
+```
 
 **PROGRAM**
+```
 module ex11(out,clk,rst);
 input clk,rst;
 output reg [3:0]out;
@@ -61,7 +63,7 @@ begin
      out <= out+1;
 end
 endmodule
-
+```
 
 Developed by:Samantha Shree S.V 
 RegisterNumber:25017585
